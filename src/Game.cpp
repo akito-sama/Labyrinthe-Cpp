@@ -4,6 +4,8 @@
 
 Game::Game(sf::RenderWindow* window) {
     screen = window;
+    screenWidth = window->getSize().x;
+    screenHeight = window->getSize().y;
 }
 
 Game::~Game() {
