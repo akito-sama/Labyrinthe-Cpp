@@ -5,14 +5,14 @@ class Game;
 
 class Case {
 
-private:
-    bool right, left, used;
+public:
+    int x, y;
+    bool right, bottom, used;
     Game* game;
 
     void drawGrid();
 
-public:
     Case();
-    Case(Game* game);
+    Case(Game* game, int x, int y);
     ~Case();
 };

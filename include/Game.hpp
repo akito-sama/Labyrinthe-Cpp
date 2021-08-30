@@ -1,15 +1,15 @@
 #pragma once
 #include <SFML/Graphics.hpp>
+#include "Labyrinthe.hpp"
 
 class Game {
-    
-private:
-    int const GridSize = 20;
 
 public:
+    int const GridSize = 20;
     sf::RenderWindow* screen;
     int screenHeight, screenWidth;
-    
+    Labyrinthe* labyrinthe;
+
 
     Game(sf::RenderWindow* window);
     ~Game();
