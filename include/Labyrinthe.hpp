@@ -1,13 +1,14 @@
 #pragma once
-#include <array>
 #include <SFML/Graphics.hpp>
 
 class Case;
 class Game;
+class Shovel;
 
 class Labyrinthe {
 
 public:
+    Shovel* shovel;
     Game* game;
     Case** grid;
     int width, height;
@@ -15,7 +16,7 @@ public:
     Labyrinthe();
     Labyrinthe(Game* game);
 
+    Case** neighbor(sf::Vector2i position);
     void draw();
-
     ~Labyrinthe();
 };

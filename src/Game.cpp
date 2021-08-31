@@ -42,5 +42,5 @@ void Game::event() {
 }
 
 void Game::update() {
-
+    labyrinthe->shovel->move();
 }

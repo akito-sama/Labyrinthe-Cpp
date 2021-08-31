@@ -1,5 +1,6 @@
 #pragma once
 #include <SFML/Graphics.hpp>
+#include <iostream>
 
 class Game;
 
@@ -16,3 +17,5 @@ public:
     Case(Game* game, int x, int y);
     ~Case();
 };
+
+std::ostream& operator<<(std::ostream& o, Case _case);

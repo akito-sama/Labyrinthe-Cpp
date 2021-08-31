@@ -17,6 +17,12 @@ Case::Case(Game* game, int x, int y) {
 }
 
 Case::~Case() {
-    std::cout << "case deleted" << " x = " <<  x << ", y = " << y << std::endl; 
+    // std::cout << "case deleted" << " x = " <<  x << ", y = " << y << std::endl; 
+}
+
+std::ostream& operator<<(std::ostream& o, Case _case)
+{
+    o << "Case object at x " << _case.x << " , y " << _case.y << "right : " << _case.right << " bottom " << _case.bottom << " used " << _case.used;
+    return o;
 }
 

@@ -1,8 +1,10 @@
 #include "Labyrinthe.hpp"
 #include "Game.hpp"
 #include "Case.hpp"
-#include "iostream"
-
+#include "Direction.hpp"
+#include "Shovel.hpp"
+#include <iostream>
+#define log(x) std::cout<< x <<std::endl
 
 void drawLine(sf::RenderWindow* surface, sf::Vector2f point1, sf::Vector2f point2)
 {
@@ -24,6 +26,7 @@ Labyrinthe::Labyrinthe(Game* game) {
     width = game->screenWidth / game->GridSize;
     height = game->screenHeight / game->GridSize;
     grid = new Case*[height];
+    shovel = new Shovel(this);
     for (int y = 0; y < height; y++)
     {
         grid[y] = new Case[width];
@@ -41,6 +44,7 @@ Labyrinthe::~Labyrinthe() {
     }
     // std::cout << "i am deleted" << std::endl;
     delete[] grid;
+    delete shovel;
 }
 
 void Labyrinthe::draw() {
@@ -62,4 +66,32 @@ void Labyrinthe::draw() {
             }
         }
     }
+    shovel->draw(game->screen);
+}
+
+Case** Labyrinthe::neighbor(const sf::Vector2i position)
+{
+    Case** neighbor = new Case*[4];
+
+    if (position.y == 0)
+        neighbor[Direction::Up] = nullptr;
+    else
+        neighbor[Direction::Up] = &grid[position.y - 1][position.x];
+    
+    if (position.x == (width - 1))
+        neighbor[Direction::Right] = nullptr;
+    else
+        neighbor[Direction::Right] = &grid[position.y][position.x + 1];
+
+    if (position.y == (height - 1))
+        neighbor[Direction::Down] = nullptr;
+    else
+        neighbor[Direction::Down] = &grid[position.y + 1][position.x];
+
+    if (position.x == 0)
+        neighbor[Direction::Left] = nullptr;
+    else
+        neighbor[Direction::Left] = &grid[position.y][position.x - 1];
+
+    return neighbor;
 }
