@@ -6,7 +6,7 @@ class Labyrinthe;
 class Game {
 
 public:
-    int const GridSize = 100;
+    int const GridSize = 12;
     sf::RenderWindow* screen;
     int screenHeight, screenWidth;
     Labyrinthe* labyrinthe;
