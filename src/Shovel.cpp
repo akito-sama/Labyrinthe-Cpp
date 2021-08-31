@@ -23,7 +23,7 @@ Shovel::Shovel(Labyrinthe* labyrinthe) {
 }
 
 Shovel::~Shovel() {
-    delete[] mouvements;
+    delete mouvements;
     std::cout << "shovel deleted" << std::endl;
 }
 
@@ -68,8 +68,6 @@ void Shovel::move() {
         {
             current_case->bottom = false;
         }
-        std::cout << coordinate << std::endl;
-        std::cout << *choice << std::endl;
 
         choice->used = true;
         
@@ -84,7 +82,7 @@ void Shovel::move() {
     }
     else if (labyrinthe->in_generation)
     {
-        labyrinthe->game->screen->setTitle("Génération fini");
+        labyrinthe->game->screen->setTitle("Génération finished");
         labyrinthe->in_generation = false;
         sf::Texture texture; 
         texture.create(labyrinthe->game->screen->getSize().x, labyrinthe->game->screen->getSize().y) ; 

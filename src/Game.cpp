@@ -13,8 +13,8 @@ Game::Game(sf::RenderWindow* window) {
 }
 
 Game::~Game() {
-    std::cout << "object deleted" << std::endl;
     delete labyrinthe;
+    std::cout << "Game deleted" << std::endl;
 }
 
 void Game::draw() {

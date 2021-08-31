@@ -4,7 +4,6 @@
 #include "Direction.hpp"
 #include "Shovel.hpp"
 #include <iostream>
-#define log(x) std::cout<< x <<std::endl
 
 void drawLine(sf::RenderWindow* surface, sf::Vector2f point1, sf::Vector2f point2)
 {
@@ -43,8 +42,8 @@ Labyrinthe::~Labyrinthe() {
     {
         delete[] grid[y];
     }
-    // std::cout << "i am deleted" << std::endl;
     delete[] grid;
+    std::cout << "i am deleted" << std::endl;
     delete shovel;
 }
 
