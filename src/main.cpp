@@ -5,18 +5,18 @@
 int main() {
     unsigned int seed = time(0);
     srand(seed);
-    auto screen = sf::RenderWindow(sf::VideoMode(600, 600), "Labyrinthe");
+    auto screen = sf::RenderWindow(sf::VideoMode(1100, 700), "Labyrinthe");
     Game game = Game(&screen);
 
 
-    float sleep_time = 1.0f/30; 
+    float sleep_time = 1.0f/5; 
 
     while(screen.isOpen())
     {
         game.event();
         game.draw();
         game.update();
-        // sf::sleep(sf::seconds(sleep_time));
+        sf::sleep(sf::seconds(sleep_time));
     }
 
     std::cout << "the seed was : " << seed << std::endl;

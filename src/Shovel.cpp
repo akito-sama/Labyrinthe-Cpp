@@ -18,8 +18,8 @@ Shovel::Shovel(Labyrinthe* labyrinthe) {
     coordinate = sf::Vector2i(0, 0);
     mouvements = new std::stack<sf::Vector2i>();
     shape.setFillColor(sf::Color::Cyan);
-    labyrinthe->grid[coordinate.y][coordinate.x].used = true; 
-    shape.setRadius(5);
+    (&this->labyrinthe->grid[0][0])->used = true;
+    shape.setRadius((labyrinthe->game->GridSize - labyrinthe->game->GridSize / 10) / 2);
 }
 
 Shovel::~Shovel() {
@@ -96,6 +96,6 @@ void Shovel::move() {
 }
 
 void Shovel::draw(sf::RenderWindow* window) {
-    shape.setPosition(coordinate.x * 20, coordinate.y * 20);
+    shape.setPosition(coordinate.x * labyrinthe->game->GridSize, coordinate.y * labyrinthe->game->GridSize);
     window->draw(shape);
 }
