@@ -23,6 +23,7 @@ Labyrinthe::Labyrinthe()
 
 Labyrinthe::Labyrinthe(Game* game) {
     this->game = game;
+    in_generation = true;
     width = game->screenWidth / game->GridSize;
     height = game->screenHeight / game->GridSize;
     grid = new Case*[height];

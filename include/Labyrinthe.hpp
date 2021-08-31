@@ -8,6 +8,7 @@ class Shovel;
 class Labyrinthe {
 
 public:
+    bool in_generation;
     Shovel* shovel;
     Game* game;
     Case** grid;

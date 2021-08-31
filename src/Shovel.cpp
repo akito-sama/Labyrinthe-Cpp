@@ -2,6 +2,7 @@
 #include "Case.hpp"
 #include "Direction.hpp"
 #include "Labyrinthe.hpp"
+#include "Game.hpp"
 #include <iostream>
 
 std::ostream& operator<<(std::ostream& o, Case _case);
@@ -17,6 +18,7 @@ Shovel::Shovel(Labyrinthe* labyrinthe) {
     coordinate = sf::Vector2i(0, 0);
     mouvements = new std::stack<sf::Vector2i>();
     shape.setFillColor(sf::Color::Cyan);
+    labyrinthe->grid[coordinate.y][coordinate.x].used = true; 
     shape.setRadius(5);
 }
 
@@ -52,7 +54,7 @@ void Shovel::move() {
             choice->right = false;
         }
 
-        else if (coordinate.x - choice->y < 0)
+        else if (coordinate.x - choice->x < 0)
         {
             current_case->right = false;
         }
@@ -62,23 +64,28 @@ void Shovel::move() {
             choice->bottom = false;
         }
 
-        else if (coordinate.x - choice->y < 0)
+        else if (coordinate.y - choice->y < 0)
         {
             current_case->bottom = false;
         }
         std::cout << coordinate << std::endl;
         std::cout << *choice << std::endl;
 
-        current_case->used = true;
+        choice->used = true;
         
         mouvements->push(coordinate);
         coordinate.x = choice->x;
         coordinate.y = choice->y;
     }
-    else
+    else if (!mouvements->empty())
     {
         coordinate = mouvements->top();
         mouvements->pop();
+    }
+    else
+    {
+        labyrinthe->game->screen->setTitle("Génération fini");
+        labyrinthe->in_generation = false;
     }
 
     delete[] neighbor;

@@ -1,7 +1,7 @@
 #pragma once
 #include <SFML/Graphics.hpp>
-#include "Labyrinthe.hpp"
-#include "Shovel.hpp"
+
+class Labyrinthe;
 
 class Game {
 

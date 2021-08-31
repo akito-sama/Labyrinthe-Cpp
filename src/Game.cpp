@@ -2,6 +2,7 @@
 #include <SFML/Graphics.hpp>
 #include <iostream>
 #include "Labyrinthe.hpp"
+#include "Shovel.hpp"
 
 
 Game::Game(sf::RenderWindow* window) {
