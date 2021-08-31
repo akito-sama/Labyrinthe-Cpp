@@ -3,17 +3,18 @@
 #include <iostream>
 #include "Labyrinthe.hpp"
 #include "Shovel.hpp"
+#include <memory>
+
 
 
 Game::Game(sf::RenderWindow* window) {
     screen = window;
     screenWidth = window->getSize().x;
     screenHeight = window->getSize().y;
-    labyrinthe = new Labyrinthe(this);
+    labyrinthe = std::make_unique<Labyrinthe>(*this);
 }
 
 Game::~Game() {
-    delete labyrinthe;
     std::cout << "Game deleted" << std::endl;
 }
 

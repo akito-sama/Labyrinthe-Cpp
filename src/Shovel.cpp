@@ -16,20 +16,20 @@ std::ostream& operator<<(std::ostream& o, sf::Vector2i vector)
 Shovel::Shovel(Labyrinthe* labyrinthe) {
     this->labyrinthe = labyrinthe;
     coordinate = sf::Vector2i(0, 0);
-    mouvements = new std::stack<sf::Vector2i>();
+    mouvements = std::stack<sf::Vector2i>();
     shape.setFillColor(sf::Color::Cyan);
     (&this->labyrinthe->grid[0][0])->used = true;
     shape.setRadius((labyrinthe->game->GridSize - labyrinthe->game->GridSize / 10) / 2);
 }
 
 Shovel::~Shovel() {
-    delete mouvements;
     std::cout << "shovel deleted" << std::endl;
 }
 
 void Shovel::move() {
 
-    auto neighbor = labyrinthe->neighbor(coordinate);
+    Case* neighbor[4];
+    labyrinthe->neighbor(neighbor, coordinate);
     std::vector<Case*> possible_case = {};
     possible_case.reserve(4);
     for (int i = 0; i < 4; i++)
@@ -71,14 +71,14 @@ void Shovel::move() {
 
         choice->used = true;
         
-        mouvements->push(coordinate);
+        mouvements.push(coordinate);
         coordinate.x = choice->x;
         coordinate.y = choice->y;
     }
-    else if (!mouvements->empty())
+    else if (!mouvements.empty())
     {
-        coordinate = mouvements->top();
-        mouvements->pop();
+        coordinate = mouvements.top();
+        mouvements.pop();
     }
     else if (labyrinthe->in_generation)
     {
@@ -92,7 +92,6 @@ void Shovel::move() {
             std :: cout  <<  "capture d'écran enregistrée dans "  << "last labyrinthe.png" << std :: endl ; 
         }
     }
-    delete[] neighbor;
 }
 
 void Shovel::draw(sf::RenderWindow* window) {
