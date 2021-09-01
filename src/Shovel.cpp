@@ -12,14 +12,18 @@ std::ostream& operator<<(std::ostream& o, sf::Vector2i vector)
     return o;
 }
 
+Shovel::Shovel()
+{
 
-Shovel::Shovel(Labyrinthe* labyrinthe) {
-    this->labyrinthe = labyrinthe;
+}
+
+Shovel::Shovel(Labyrinthe& labyrinthe) {
+    this->labyrinthe = &labyrinthe;
     coordinate = sf::Vector2i(0, 0);
     mouvements = std::stack<sf::Vector2i>();
     shape.setFillColor(sf::Color::Cyan);
     (&this->labyrinthe->grid[0][0])->used = true;
-    shape.setRadius((labyrinthe->game->GridSize - labyrinthe->game->GridSize / 10) / 2);
+    shape.setRadius((labyrinthe.game->GridSize - labyrinthe.game->GridSize / 10) / 2);
 }
 
 Shovel::~Shovel() {
@@ -46,34 +50,34 @@ void Shovel::move() {
 
     if (!possible_case.empty())
     {
-        Case* current_case = &labyrinthe->grid[coordinate.y][coordinate.x];
-        Case* choice = possible_case[rand() % possible_case.size()];
+        Case& current_case = labyrinthe->grid[coordinate.y][coordinate.x];
+        Case& choice = *possible_case[rand() % possible_case.size()];
 
-        if (coordinate.x - choice->x > 0)
+        if (coordinate.x - choice.x > 0)
         {
-            choice->right = false;
+            choice.right = false;
         }
 
-        else if (coordinate.x - choice->x < 0)
+        else if (coordinate.x - choice.x < 0)
         {
-            current_case->right = false;
+            current_case.right = false;
         }
 
-        if (coordinate.y - choice->y > 0)
+        if (coordinate.y - choice.y > 0)
         {
-            choice->bottom = false;
+            choice.bottom = false;
         }
 
-        else if (coordinate.y - choice->y < 0)
+        else if (coordinate.y - choice.y < 0)
         {
-            current_case->bottom = false;
+            current_case.bottom = false;
         }
 
-        choice->used = true;
+        choice.used = true;
         
         mouvements.push(coordinate);
-        coordinate.x = choice->x;
-        coordinate.y = choice->y;
+        coordinate.x = choice.x;
+        coordinate.y = choice.y;
     }
     else if (!mouvements.empty())
     {
@@ -94,7 +98,7 @@ void Shovel::move() {
     }
 }
 
-void Shovel::draw(sf::RenderWindow* window) {
+void Shovel::draw(sf::RenderWindow& window) {
     shape.setPosition(coordinate.x * labyrinthe->game->GridSize, coordinate.y * labyrinthe->game->GridSize);
-    window->draw(shape);
+    window.draw(shape);
 }

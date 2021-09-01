@@ -7,10 +7,10 @@
 
 
 
-Game::Game(sf::RenderWindow* window) {
-    screen = window;
-    screenWidth = window->getSize().x;
-    screenHeight = window->getSize().y;
+Game::Game(sf::RenderWindow& window) {
+    screen = &window;
+    screenWidth = window.getSize().x;
+    screenHeight = window.getSize().y;
     labyrinthe = std::make_unique<Labyrinthe>(*this);
 }
 
@@ -44,5 +44,5 @@ void Game::event() {
 }
 
 void Game::update() {
-    labyrinthe->shovel->move();
+    labyrinthe->shovel.move();
 }

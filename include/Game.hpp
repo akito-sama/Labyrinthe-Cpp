@@ -8,12 +8,12 @@ class Game {
 
 public:
     int const GridSize = 12;
-    sf::RenderWindow* screen;
+    sf::RenderWindow* screen = nullptr;
     int screenHeight, screenWidth;
     std::unique_ptr<Labyrinthe> labyrinthe;
 
 
-    Game(sf::RenderWindow* window);
+    Game(sf::RenderWindow& window);
     ~Game();
 
     void draw();

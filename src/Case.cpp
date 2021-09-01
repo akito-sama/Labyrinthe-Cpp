@@ -7,13 +7,12 @@ Case::Case()
 
 }
 
-Case::Case(Game* game, int x, int y) {
+Case::Case(int x, int y) {
     this->x = x;
     this->y = y;
     right = true;
     bottom = true;
     used = false;
-    this->game = game;
 }
 
 Case::~Case() {

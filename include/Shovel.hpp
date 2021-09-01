@@ -8,12 +8,13 @@ class Shovel {
 
 public:
     sf::Vector2i coordinate;
-    Labyrinthe* labyrinthe;
+    Labyrinthe* labyrinthe = nullptr;
     std::stack<sf::Vector2i> mouvements;
     sf::CircleShape shape;
     
     void move();
-    void draw(sf::RenderWindow* window);
-    Shovel(Labyrinthe* labyrinthe);
+    void draw(sf::RenderWindow& window);
+    Shovel();
+    Shovel(Labyrinthe& labyrinthe);
     ~Shovel();
 };

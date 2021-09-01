@@ -1,16 +1,16 @@
 #pragma once
 #include <SFML/Graphics.hpp>
 #include <memory>
+#include "Shovel.hpp"
 
 class Case;
 class Game;
-class Shovel;
 
 class Labyrinthe {
 
 public:
     bool in_generation;
-    std::unique_ptr<Shovel> shovel;
+    Shovel shovel;
     Game* game = nullptr;
     Case** grid = nullptr;
     int width, height;
