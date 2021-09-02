@@ -8,9 +8,10 @@
 
 
 Game::Game(sf::RenderWindow& window) {
+    offset = GridSize / 2;
     screen = &window;
-    screenWidth = window.getSize().x;
-    screenHeight = window.getSize().y;
+    LabyrintheWidth = window.getSize().x - GridSize;
+    LabyrintheHeight = window.getSize().y - GridSize;
     labyrinthe = std::make_unique<Labyrinthe>(*this);
 }
 

@@ -15,7 +15,7 @@ int main() {
         game.event();
         game.draw();
         game.update();
-        // sf::sleep(sf::seconds(sleep_time));
+        sf::sleep(sf::seconds(sleep_time));
     }
 
     std::cout << "the seed was : " << seed << std::endl;

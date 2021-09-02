@@ -99,6 +99,6 @@ void Shovel::move() {
 }
 
 void Shovel::draw(sf::RenderWindow& window) {
-    shape.setPosition(coordinate.x * labyrinthe->game->GridSize, coordinate.y * labyrinthe->game->GridSize);
+    shape.setPosition(coordinate.x * labyrinthe->game->GridSize + labyrinthe->game->offset, coordinate.y * labyrinthe->game->GridSize + labyrinthe->game->offset);
     window.draw(shape);
 }
