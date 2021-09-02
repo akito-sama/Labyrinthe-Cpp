@@ -6,7 +6,8 @@ int main() {
     unsigned int seed = time(0);
     srand(seed);
     auto screen = sf::RenderWindow(sf::VideoMode::getDesktopMode(), "Labyrinthe");
-    Game game = Game(screen);
+    int GridSize = 5;
+    Game game = Game(screen, GridSize);
 
     float sleep_time = 1.0f/5; 
 

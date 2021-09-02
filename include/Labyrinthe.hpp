@@ -20,5 +20,7 @@ public:
 
     void neighbor(Case** neighbor, const sf::Vector2i position);
     void draw();
+    void skip();
+    void event(sf::Event& event);
     ~Labyrinthe();
 };

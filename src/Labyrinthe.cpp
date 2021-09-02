@@ -47,7 +47,7 @@ Labyrinthe::~Labyrinthe() {
         delete[] grid[y];
     }
     delete[] grid;
-    std::cout << "i am deleted" << std::endl;
+    std::cout << "i Lzbyrinthe deleted" << std::endl;
 }
 
 void Labyrinthe::draw() {
@@ -97,4 +97,18 @@ void Labyrinthe::neighbor(Case** neighbor, const sf::Vector2i position)
         neighbor[Direction::Left] = nullptr;
     else
         neighbor[Direction::Left] = &grid[position.y][position.x - 1];
+}
+
+void Labyrinthe::skip() {
+    while(in_generation)
+    {
+        shovel.move();
+    }
+}
+
+void Labyrinthe::event(sf::Event& event) {
+    if (event.type == sf::Event::KeyPressed) {
+        if (event.key.code == sf::Keyboard::S)
+            skip();
+    }
 }

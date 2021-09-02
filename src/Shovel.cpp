@@ -84,8 +84,7 @@ void Shovel::move() {
         coordinate = mouvements.top();
         mouvements.pop();
     }
-    else if (labyrinthe->in_generation)
-    {
+    else {
         labyrinthe->game->screen->setTitle("Génération finished");
         labyrinthe->in_generation = false;
         sf::Texture texture; 

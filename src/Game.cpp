@@ -7,7 +7,8 @@
 
 
 
-Game::Game(sf::RenderWindow& window) {
+Game::Game(sf::RenderWindow& window, int GridSize) {
+    this->GridSize = GridSize;
     offset = GridSize / 2;
     screen = &window;
     LabyrintheWidth = window.getSize().x - GridSize;
@@ -40,10 +41,12 @@ void Game::event() {
         default:
             break;
         }
+        labyrinthe->event(event);
     }
 
 }
 
 void Game::update() {
-    labyrinthe->shovel.move();
+    if (labyrinthe->in_generation)
+        labyrinthe->shovel.move();
 }
