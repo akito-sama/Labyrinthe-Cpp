@@ -89,6 +89,8 @@ void Shovel::move() {
         labyrinthe->in_generation = false;
         sf::Texture texture; 
         texture.create(labyrinthe->game->screen->getSize().x, labyrinthe->game->screen->getSize().y) ; 
+        labyrinthe->game->draw();
+        labyrinthe->game->screen->display();
         texture.update(*labyrinthe->game->screen); 
         if  (texture.copyToImage().saveToFile( "last labyrinthe.png" )) 
         { 

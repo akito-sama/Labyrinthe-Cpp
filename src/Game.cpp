@@ -6,7 +6,6 @@
 #include <memory>
 
 
-
 Game::Game(sf::RenderWindow& window, int GridSize) {
     this->GridSize = GridSize;
     offset = GridSize / 2;
@@ -23,7 +22,6 @@ Game::~Game() {
 void Game::draw() {
     screen->clear(sf::Color::White);
     labyrinthe->draw();
-    screen->display();
 }
 
 void Game::event() {
@@ -49,4 +47,5 @@ void Game::event() {
 void Game::update() {
     if (labyrinthe->in_generation)
         labyrinthe->shovel.move();
+    screen->display();
 }

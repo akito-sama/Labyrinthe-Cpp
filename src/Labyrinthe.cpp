@@ -29,6 +29,7 @@ Labyrinthe::Labyrinthe(Game& game) {
     height = game.LabyrintheHeight / game.GridSize;
     grid = new Case*[height];
     shovel = Shovel(*this);
+    std::cout << "work sans case" << std::endl;
     for (int y = 0; y < height; y++)
     {
         grid[y] = new Case[width];
@@ -37,6 +38,7 @@ Labyrinthe::Labyrinthe(Game& game) {
             grid[y][x] = Case(x, y);
         }
     }
+    std::cout << "work avec case" << std::endl;
     grid[0][0].used = true;
     grid[height - 1][width - 1].bottom = false;
 }
@@ -47,7 +49,7 @@ Labyrinthe::~Labyrinthe() {
         delete[] grid[y];
     }
     delete[] grid;
-    std::cout << "i Lzbyrinthe deleted" << std::endl;
+    std::cout << "the labyrinthe deleted" << std::endl;
 }
 
 void Labyrinthe::draw() {
